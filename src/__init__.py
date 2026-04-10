@@ -9,7 +9,6 @@ from .chunking import (
 from .embeddings import (
     EMBEDDING_PROVIDER_ENV,
     LOCAL_EMBEDDING_MODEL,
-    MULTILINGUAL_EMBEDDING_MODEL,
     OPENAI_EMBEDDING_MODEL,
     OLLAMA_EMBEDDING_MODEL,
     LocalEmbedder,
@@ -36,7 +35,6 @@ __all__ = [
     "OllamaEmbedder",
     "_mock_embed",
     "LOCAL_EMBEDDING_MODEL",
-    "MULTILINGUAL_EMBEDDING_MODEL",
     "OPENAI_EMBEDDING_MODEL",
     "OLLAMA_EMBEDDING_MODEL",
     "EMBEDDING_PROVIDER_ENV",

@@ -3,8 +3,7 @@ from __future__ import annotations
 import hashlib
 import math
 
-LOCAL_EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # English-only default
-MULTILINGUAL_EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"  # 50+ languages
+LOCAL_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
 OLLAMA_EMBEDDING_MODEL = "nomic-embed-text-v2-moe"
 EMBEDDING_PROVIDER_ENV = "EMBEDDING_PROVIDER"
