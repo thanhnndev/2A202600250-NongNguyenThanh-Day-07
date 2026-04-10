@@ -1,17 +1,16 @@
 pytest>=7.0
 python-dotenv>=1.0
+pyyaml>=6.0
 
-# Optional manual-demo extras
-# Install local embedder support with:
-#   pip install sentence-transformers
-# Install OpenAI embedder support with:
-#   pip install openai
-# Install Ollama embedder support with:
-#   pip install requests
-# Install all optional embedders with:
-#   pip install openai sentence-transformers requests
-# sentence-transformers>=3.0
-# openai>=1.0
+# Optional: Local embedder support
+sentence-transformers>=3.0
 
-# Optional: for bonus tasks
-# chromadb>=0.4.0      # Real vector database integration
+# Optional: OpenAI embedder support
+openai>=1.0
+
+# Optional: Ollama embedder support
+requests>=2.25.0
+
+# Optional: For BEIR scifact evaluation and benchmarking
+chromadb>=0.4.0
+numpy>=1.24.0

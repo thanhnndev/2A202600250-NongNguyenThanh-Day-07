@@ -175,6 +175,27 @@ PY
 └── requirements.txt
 ```
 
+## BEIR Scifact Evaluation (Group Phase 2)
+
+Nhóm sử dụng BEIR scifact dataset để đánh giá chunking strategies với advanced metrics.
+
+### Dataset
+- **Source**: https://huggingface.co/datasets/BeIR/scifact
+- **Corpus**: 5,183 scientific claims with evidence
+- **Queries**: 300 fact-checking queries
+- **Domain**: Scientific fact verification (Y khoa/Khoa học)
+
+### Evaluation Script
+```bash
+python run-benchmarks.py
+```
+
+Output: `retrieval_metrics_summary.csv` với các metrics:
+- Accuracy@1, Recall@5, Precision@5, F1@5, MRR@5, MAP@5, NDCG@5
+
+### Key Insight
+Khi dữ liệu test tăng lên, các retriever có xu hướng converge lại, không còn sự khác biệt rõ ràng giữa các strategies. Tuy nhiên, với corpus vừa phải (5K-50K docs), choice of chunking strategy tạo ra sự khác biệt đáng kể (20-30% NDCG improvement).
+
 ---
 
 ## Các Giai Đoạn Lab
