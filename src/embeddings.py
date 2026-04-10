@@ -5,6 +5,7 @@ import math
 
 LOCAL_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"
+OLLAMA_EMBEDDING_MODEL = "nomic-embed-text-v2-moe"
 EMBEDDING_PROVIDER_ENV = "EMBEDDING_PROVIDER"
 
 
@@ -56,6 +57,33 @@ class OpenAIEmbedder:
     def __call__(self, text: str) -> list[float]:
         response = self.client.embeddings.create(model=self.model_name, input=text)
         return [float(value) for value in response.data[0].embedding]
+
+
+class OllamaEmbedder:
+    """Ollama embeddings API-backed embedder using nomic-embed-text-v2-moe."""
+
+    def __init__(
+        self,
+        model_name: str = OLLAMA_EMBEDDING_MODEL,
+        base_url: str = "http://localhost:11434",
+    ) -> None:
+        import requests
+
+        self.model_name = model_name
+        self._backend_name = f"ollama/{model_name}"
+        self.base_url = base_url.rstrip("/")
+        self._session = requests.Session()
+
+    def __call__(self, text: str) -> list[float]:
+        response = self._session.post(
+            f"{self.base_url}/api/embed",
+            json={"model": self.model_name, "input": text},
+            timeout=30,
+        )
+        response.raise_for_status()
+        data = response.json()
+        # Ollama returns embeddings as array of arrays, get first one
+        return [float(value) for value in data["embeddings"][0]]
 
 
 _mock_embed = MockEmbedder()

@@ -78,10 +78,31 @@ PY
 export OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 ```
 
+### 4) Tùy chọn: Ollama embedder `nomic-embed-text-v2-moe`
+
+```bash
+pip install requests
+ollama pull nomic-embed-text-v2-moe
+python3 - <<'PY'
+from src import OllamaEmbedder
+embedder = OllamaEmbedder()
+print(embedder._backend_name)
+print(len(embedder("embedding smoke test")))
+PY
+```
+
+- Model mặc định cho lựa chọn này là `nomic-embed-text-v2-moe` (768 dimensions)
+- Có thể đổi model bằng:
+```bash
+export OLLAMA_EMBEDDING_MODEL=nomic-embed-text-v2-moe
+export OLLAMA_BASE_URL=http://localhost:11434
+```
+- Yêu cầu Ollama đã được cài đặt và đang chạy
+
 ### Quy tắc fallback
 
 - Nếu không chọn gì, lab dùng `_mock_embed`
-- Nếu chọn `local` hoặc `openai` nhưng setup thiếu, code sẽ tự fallback về `_mock_embed`
+- Nếu chọn `local`, `openai`, hoặc `ollama` nhưng setup thiếu, code sẽ tự fallback về `_mock_embed`
 - Có thể cấu hình qua `.env` mà không cần `source .env`
 - Script `main.py` chạy end-to-end và import public API từ package `src`
 
@@ -115,6 +136,19 @@ PY
 ```
 
 > Lưu ý: `OpenAIEmbedder` cần `OPENAI_API_KEY` hợp lệ trong môi trường hoặc `.env`.
+
+**Verify Ollama embedder**
+
+```bash
+python3 - <<'PY'
+from src import OllamaEmbedder
+
+embedder = OllamaEmbedder()
+print(embedder._backend_name, len(embedder("embedding smoke test")))
+PY
+```
+
+> Lưu ý: `OllamaEmbedder` cần Ollama đã được cài đặt và model `nomic-embed-text-v2-moe` đã được pull.
 
 ---
 

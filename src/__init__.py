@@ -10,9 +10,11 @@ from .embeddings import (
     EMBEDDING_PROVIDER_ENV,
     LOCAL_EMBEDDING_MODEL,
     OPENAI_EMBEDDING_MODEL,
+    OLLAMA_EMBEDDING_MODEL,
     LocalEmbedder,
     MockEmbedder,
     OpenAIEmbedder,
+    OllamaEmbedder,
     _mock_embed,
 )
 from .models import Document
@@ -30,8 +32,10 @@ __all__ = [
     "MockEmbedder",
     "LocalEmbedder",
     "OpenAIEmbedder",
+    "OllamaEmbedder",
     "_mock_embed",
     "LOCAL_EMBEDDING_MODEL",
     "OPENAI_EMBEDDING_MODEL",
+    "OLLAMA_EMBEDDING_MODEL",
     "EMBEDDING_PROVIDER_ENV",
 ]
